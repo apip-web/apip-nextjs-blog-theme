@@ -89,7 +89,7 @@ export default function Footer({ copyrightText = 'All rights reserved.' }) {
   }
 
   return (
-    <footer className="flex flex-col items-center py-16 mt-20 border-t border-gray-200 dark:border-gray-800">
+    <footer className="flex flex-col items-center pt-16 pb-0 mt-20 border-t border-gray-200 dark:border-gray-800">
       <div className="flex items-center justify-center p-1 bg-gray-100 dark:bg-gray-800 rounded-full shadow-sm">
         <button
           type="button"
