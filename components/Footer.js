@@ -36,13 +36,15 @@ const moonIcon = (
   </svg>
 );
 
-export default function Footer({ copyrightText = '© 2025 Apip Web. All rights reserved.' }) {
+export default function Footer({ copyrightText = 'All rights reserved.' }) {
   const [theme, setTheme] = useState('system');
-  const [isDark, setIsDark] = useState(false); // Default false untuk server render
-  const [mounted, setMounted] = useState(false); // Untuk menghindari hydration mismatch
+  const [isDark, setIsDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  const blogName = process.env.BLOG_NAME || 'Apip Theme';
 
   useEffect(() => {
-    setMounted(true); // Tandai bahwa komponen telah mount di client
+    setMounted(true);
 
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light' || savedTheme === 'dark') {
@@ -75,14 +77,10 @@ export default function Footer({ copyrightText = '© 2025 Apip Web. All rights r
     }
   };
 
-  // Render placeholder sederhana selama prerendering (mounted === false)
   if (!mounted) {
     return (
       <footer className="flex flex-col items-center py-16 mt-20 border-t border-gray-200 dark:border-gray-800">
-        <p className="mb-8 text-sm font-medium uppercase tracking-wider text-gray-600 dark:text-gray-400 opacity-80">
-          {copyrightText}
-        </p>
-        <div className="h-12" /> {/* Placeholder untuk switcher */}
+        <div className="h-32" /> {/* Placeholder */}
         <p className="mt-8 text-xs text-gray-500 dark:text-gray-600">
           Built with Next.js & Tailwind CSS • Deployed on Vercel
         </p>
@@ -92,10 +90,6 @@ export default function Footer({ copyrightText = '© 2025 Apip Web. All rights r
 
   return (
     <footer className="flex flex-col items-center py-16 mt-20 border-t border-gray-200 dark:border-gray-800">
-      <p className="mb-8 text-sm font-medium uppercase tracking-wider text-gray-600 dark:text-gray-400 opacity-80">
-        {copyrightText}
-      </p>
-
       <div className="flex items-center justify-center p-1 bg-gray-100 dark:bg-gray-800 rounded-full shadow-sm">
         <button
           type="button"
@@ -120,6 +114,15 @@ export default function Footer({ copyrightText = '© 2025 Apip Web. All rights r
           {sunIcon}
           <span className="ml-2 text-sm font-medium">Light</span>
         </button>
+      </div>
+
+      <div className="mt-8 text-center">
+        <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          {blogName}
+        </p>
+        <p className="text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 opacity-80">
+          {copyrightText}
+        </p>
       </div>
 
       <p className="mt-8 text-xs text-gray-500 dark:text-gray-600">
