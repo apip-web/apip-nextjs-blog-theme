@@ -62,19 +62,3 @@ Ubah menjadi:
   cssVars['--theme-headings'] = 'Geist' || 'Courier';
   cssVars['--theme-body'] = 'Geist' || 'Courier';
 ```
-
-#### 4) File pages/_app.js
-
-Import font menggunakan fitur yang ada di Next.js
-
-```js
-import { Geist } from 'next/font/google';
-
-// Definisi Geist
-const geist = Geist({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-  variable: '--font-geist',
-  display: 'swap',
-});
-```
