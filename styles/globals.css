@@ -44,3 +44,19 @@
     margin-bottom: 1rem; /* Spacing antar paragraf */
   }
 }
+
+@layer components {
+  pre {
+    overflow-x: auto; /* Aktifkan scroll horizontal hanya pada pre */
+    max-width: 100%; /* Batasi lebar pre agar tidak melebihi container */
+    padding: 1rem; /* Tambah padding untuk estetika */
+    border-radius: 0.5rem; /* Rounded corners */
+    background-color: rgb(31 41 55 / var(--tw-bg-opacity)); /* Dark mode compatible, sesuaikan jika perlu */
+  }
+
+  /* Opsional: Batasi lebar code block agar lebih readable */
+  pre code {
+    white-space: pre-wrap; /* Wrap teks panjang jika diperlukan */
+    word-break: break-all;
+  }
+}
