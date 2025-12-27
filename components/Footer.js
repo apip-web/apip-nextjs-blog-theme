@@ -1,4 +1,4 @@
-'use client'; // Pastikan ini Client Component karena menggunakan localStorage dan event
+'use client';
 
 import React, { useEffect, useState } from 'react';
 
@@ -36,30 +36,47 @@ const moonIcon = (
   </svg>
 );
 
-export default function Footer({ copyrightText = '© 2025 Your Blog Name. All rights reserved.' }) {
-  const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('system');
+export default function Footer({ copyrightText = '© 2025 Apip Web. All rights reserved.' }) {
+  const [theme, setTheme] = useState('system');
 
   useEffect(() => {
-    // Deteksi tema awal saat komponen mount
+    // Baca tema yang tersimpan atau gunakan preferensi sistem
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light' || savedTheme === 'dark') {
       setTheme(savedTheme);
       document.documentElement.classList.toggle('dark', savedTheme === 'dark');
     } else {
-      // Default: ikuti sistem
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setTheme('system');
-      document.documentElement.classList.toggle('dark', systemPrefersDark);
+      document.documentElement.classList.toggle('dark', prefersDark);
     }
+
+    // Listener untuk perubahan preferensi sistem secara real-time
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e) => {
+      if (localStorage.getItem('theme') === null || localStorage.getItem('theme') === 'system') {
+        document.documentElement.classList.toggle('dark', e.matches);
+      }
+    };
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  const toggleTheme = (newTheme: 'light' | 'dark') => {
+  const toggleTheme = (newTheme) => {
     setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    if (newTheme === 'system') {
+      localStorage.removeItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.classList.toggle('dark', prefersDark);
+    } else {
+      localStorage.setItem('theme', newTheme);
+      document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    }
   };
 
-  const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const isDark =
+    theme === 'dark' ||
+    (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
   return (
     <footer className="flex flex-col items-center py-16 mt-20 border-t border-gray-200 dark:border-gray-800">
@@ -70,11 +87,12 @@ export default function Footer({ copyrightText = '© 2025 Your Blog Name. All ri
       <div className="flex items-center justify-center p-1 bg-gray-100 dark:bg-gray-800 rounded-full shadow-sm">
         <button
           type="button"
-          aria-label="Aktifkan mode gelap"
-          aria-pressed={!isDark}
+          aria-label="Gunakan mode gelap"
           onClick={() => toggleTheme('dark')}
           className={`flex items-center justify-center w-28 h-11 rounded-full transition-all duration-300 ${
-            isDark ? 'bg-primary text-white' : 'text-gray-600 dark:text-gray-300'
+            isDark
+              ? 'bg-primary text-white shadow-md'
+              : 'text-gray-600 dark:text-gray-300'
           }`}
         >
           {moonIcon}
@@ -83,11 +101,12 @@ export default function Footer({ copyrightText = '© 2025 Your Blog Name. All ri
 
         <button
           type="button"
-          aria-label="Aktifkan mode terang"
-          aria-pressed={isDark}
+          aria-label="Gunakan mode terang"
           onClick={() => toggleTheme('light')}
           className={`flex items-center justify-center w-28 h-11 rounded-full transition-all duration-300 ${
-            !isDark ? 'bg-primary text-white' : 'text-gray-600 dark:text-gray-300'
+            !isDark
+              ? 'bg-primary text-white shadow-md'
+              : 'text-gray-600 dark:text-gray-300'
           }`}
         >
           {sunIcon}
@@ -96,7 +115,7 @@ export default function Footer({ copyrightText = '© 2025 Your Blog Name. All ri
       </div>
 
       <p className="mt-8 text-xs text-gray-500 dark:text-gray-600">
-        Built with Next.js & Tailwind CSS
+        Built with Next.js & Tailwind CSS • Deployed on Vercel
       </p>
     </footer>
   );
