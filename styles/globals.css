@@ -44,3 +44,36 @@
     margin-bottom: 1rem; /* Spacing antar paragraf */
   }
 }
+
+@layer components {
+  .prose pre {
+    overflow-x: auto; /* Scroll horizontal pada code block */
+    max-width: 100%; /* Batasi lebar agar tidak melebihi container */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #1f2937; /* Abu-abu gelap, sesuaikan dengan tema */
+    scrollbar-width: thin; /* Scrollbar tipis */
+  }
+
+  .prose pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  .prose code {
+    background-color: rgba(31, 41, 55, 0.8);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  /* Dark mode */
+  .dark .prose pre {
+    background-color: #111827;
+  }
+
+  .dark .prose code {
+    background-color: rgba(55, 65, 81, 0.8);
+  }
+}
