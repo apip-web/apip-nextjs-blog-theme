@@ -38,45 +38,57 @@ const moonIcon = (
 
 export default function Footer({ copyrightText = '© 2025 Apip Web. All rights reserved.' }) {
   const [theme, setTheme] = useState('system');
+  const [isDark, setIsDark] = useState(false); // Default false untuk server render
+  const [mounted, setMounted] = useState(false); // Untuk menghindari hydration mismatch
 
   useEffect(() => {
-    // Baca tema yang tersimpan atau gunakan preferensi sistem
+    setMounted(true); // Tandai bahwa komponen telah mount di client
+
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light' || savedTheme === 'dark') {
       setTheme(savedTheme);
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
     } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setTheme('system');
-      document.documentElement.classList.toggle('dark', prefersDark);
     }
 
-    // Listener untuk perubahan preferensi sistem secara real-time
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (e) => {
-      if (localStorage.getItem('theme') === null || localStorage.getItem('theme') === 'system') {
-        document.documentElement.classList.toggle('dark', e.matches);
-      }
+    const updateDarkMode = () => {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const effectiveDark = theme === 'dark' || (theme === 'system' && prefersDark);
+      setIsDark(effectiveDark);
+      document.documentElement.classList.toggle('dark', effectiveDark);
     };
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
+
+    updateDarkMode();
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', updateDarkMode);
+
+    return () => mediaQuery.removeEventListener('change', updateDarkMode);
+  }, [theme]);
 
   const toggleTheme = (newTheme) => {
     setTheme(newTheme);
     if (newTheme === 'system') {
       localStorage.removeItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.classList.toggle('dark', prefersDark);
     } else {
       localStorage.setItem('theme', newTheme);
-      document.documentElement.classList.toggle('dark', newTheme === 'dark');
     }
   };
 
-  const isDark =
-    theme === 'dark' ||
-    (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  // Render placeholder sederhana selama prerendering (mounted === false)
+  if (!mounted) {
+    return (
+      <footer className="flex flex-col items-center py-16 mt-20 border-t border-gray-200 dark:border-gray-800">
+        <p className="mb-8 text-sm font-medium uppercase tracking-wider text-gray-600 dark:text-gray-400 opacity-80">
+          {copyrightText}
+        </p>
+        <div className="h-12" /> {/* Placeholder untuk switcher */}
+        <p className="mt-8 text-xs text-gray-500 dark:text-gray-600">
+          Built with Next.js & Tailwind CSS • Deployed on Vercel
+        </p>
+      </footer>
+    );
+  }
 
   return (
     <footer className="flex flex-col items-center py-16 mt-20 border-t border-gray-200 dark:border-gray-800">
@@ -90,9 +102,7 @@ export default function Footer({ copyrightText = '© 2025 Apip Web. All rights r
           aria-label="Gunakan mode gelap"
           onClick={() => toggleTheme('dark')}
           className={`flex items-center justify-center w-28 h-11 rounded-full transition-all duration-300 ${
-            isDark
-              ? 'bg-primary text-white shadow-md'
-              : 'text-gray-600 dark:text-gray-300'
+            isDark ? 'bg-primary text-white shadow-md' : 'text-gray-600 dark:text-gray-300'
           }`}
         >
           {moonIcon}
@@ -104,9 +114,7 @@ export default function Footer({ copyrightText = '© 2025 Apip Web. All rights r
           aria-label="Gunakan mode terang"
           onClick={() => toggleTheme('light')}
           className={`flex items-center justify-center w-28 h-11 rounded-full transition-all duration-300 ${
-            !isDark
-              ? 'bg-primary text-white shadow-md'
-              : 'text-gray-600 dark:text-gray-300'
+            !isDark ? 'bg-primary text-white shadow-md' : 'text-gray-600 dark:text-gray-300'
           }`}
         >
           {sunIcon}
