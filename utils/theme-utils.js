@@ -10,8 +10,8 @@ export function generateCssVariables() {
   for (const [key, value] of Object.entries(themeColors)) {
     cssVars[`--theme-${key}`] = value;
   }
-  cssVars['--theme-headings'] = FONT_THEMES[FONT_HEADINGS] || 'Geist';
-  cssVars['--theme-body'] = FONT_THEMES[FONT_BODY] || 'Geist';
+  cssVars['--theme-headings'] = 'var(--font-geist)';
+  cssVars['--theme-body'] = 'var(--font-geist)';
   
   const cssVarsString = Object.entries(cssVars)
     .map(([key, value]) => `${key}: ${value};`)
