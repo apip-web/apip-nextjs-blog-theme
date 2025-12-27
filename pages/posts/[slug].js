@@ -40,7 +40,7 @@ export default function PostPage({
 }) {
   return (
     <Layout>
-    <div className="mx-auto w-full max-w-2xl px-6">
+    <div className="mx-auto w-full max-w-2xl">
       <SEO
         title={`${frontMatter.title} - ${globalData.name}`}
         description={frontMatter.description}
