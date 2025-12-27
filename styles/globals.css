@@ -21,9 +21,25 @@
   h5,
   h6 {
     font-family: var(--font-primary);
+    font-weight: 800; /* Extra bold seperti shadcn */
+    line-height: 1.2; /* Tight untuk heading */
+    letter-spacing: -0.05em; /* Tracking tighter */
   }
+
+  h1 { font-size: 2.25rem; } /* ~36px, mirip h1 SvelteKit */
+  h2 { font-size: 1.875rem; } /* ~30px */
+  h3 { font-size: 1.5rem; } /* ~24px */
+  h4 { font-size: 1.25rem; }
+  h5 { font-size: 1.125rem; }
+  h6 { font-size: 1rem; }
 
   body {
     font-family: var(--font-secondary);
+    font-size: 1.125rem; /* ~18px, lebih besar dari default 16px */
+    line-height: 1.6; /* Lebih lega untuk keterbacaan */
+  }
+
+  p {
+    margin-bottom: 1rem; /* Spacing antar paragraf */
   }
 }
