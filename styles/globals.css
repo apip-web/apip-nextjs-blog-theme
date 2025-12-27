@@ -39,8 +39,9 @@
     line-height: 1.6; /* Lebih lega untuk keterbacaan */
   }
 
-  pre {
-  @apply max-w-full overflow-x-auto rounded-lg;
+  .prose pre {
+  overflow-x: auto;
+  max-width: 100%;
   }
 
   p {
