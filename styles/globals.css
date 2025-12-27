@@ -40,6 +40,7 @@
   }
 
   p {
+    font-family: var(--font-secondary);
     margin-bottom: 1rem; /* Spacing antar paragraf */
   }
 }
