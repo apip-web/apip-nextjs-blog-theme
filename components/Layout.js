@@ -15,11 +15,5 @@ export function GradientBackground({ variant, className }) {
 }
 
 export default function Layout({ children }) {
-  return (
-  <div className="pb-24">
-    <div className="flex flex-col items-center w-full max-w-2xl mx-auto">
-      {children}
-    </div>
-  </div>
-  );
+  return <>{children}</>;
 }
