@@ -1,5 +1,4 @@
 .colorBackground {
-  position: fixed;
   left: 50%;
   transform: translateX(-50%);
   background: radial-gradient(
@@ -16,14 +15,14 @@
   /* mix-blend-mode: normal; */
   max-height: 800px;
   height: 80vh;
-  width: 70vw;
   max-width: 1400px;
+  width: 70vw;
+  width: 100%;
   filter: blur(44px);
   z-index: -1;
 }
 
 .colorBackgroundBottom {
-  position: fixed;
   left: 50%;
   transform: translateX(-50%) rotate(190deg);
   background: radial-gradient(
@@ -41,6 +40,7 @@
   height: 600px;
   max-width: 900px;
   width: 55vw;
+  width: 100%;
   filter: blur(44px);
   z-index: -1;
 }
