@@ -39,6 +39,10 @@
     line-height: 1.6; /* Lebih lega untuk keterbacaan */
   }
 
+  html, body {
+  overflow-x: hidden;
+  }
+
   .prose pre {
   overflow-x: auto;
   max-width: 100%;
