@@ -48,3 +48,44 @@
     margin-bottom: 1rem; /* Spacing antar paragraf */
   }
 }
+
+@layer components {
+  pre {
+    overflow-x: auto;              /* Tambah scroll horizontal */
+    max-width: 100%;               /* Batasi lebar agar tidak melebihi container */
+    padding: 1rem;                 /* Ruang dalam */
+    border-radius: 0.5rem;         /* Sudut membulat */
+    background-color: #1f2937;     /* Background gelap (light mode) */
+    scrollbar-width: thin;         /* Scrollbar tipis di Firefox */
+  }
+
+  pre::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  pre::-webkit-scrollbar-thumb {
+    background-color: #6b7280;
+    border-radius: 4px;
+  }
+
+  /* Dark mode */
+  .dark pre {
+    background-color: #111827;
+  }
+
+  .dark pre::-webkit-scrollbar-thumb {
+    background-color: #4b5563;
+  }
+
+  /* Opsional: Inline code styling jika diperlukan */
+  code {
+    background-color: rgba(31, 41, 55, 0.8);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  .dark code {
+    background-color: rgba(55, 65, 81, 0.8);
+  }
+}
