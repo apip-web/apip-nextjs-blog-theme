@@ -41,7 +41,7 @@
 
   pre {
   @apply max-w-full overflow-x-auto rounded-lg;
-  
+  }
 
   p {
     font-family: var(--font-secondary);
