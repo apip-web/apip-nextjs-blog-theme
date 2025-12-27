@@ -60,12 +60,14 @@ export default function PostPage({
           )}
         </header>
         <main>
+          <div className="overflow-x-auto">
           <article
             className="prose dark:prose-invert overflow-x-auto"
             data-sb-field-path="markdown_content"
           >
             <MDXRemote {...source} components={components} />
           </article>
+          </div>
         </main>
         <div className="grid mt-12 md:grid-cols-2 lg:-mx-24">
           {prevPost && (
