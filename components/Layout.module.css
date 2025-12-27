@@ -1,4 +1,5 @@
 .colorBackground {
+  position: absolute;
   left: 50%;
   transform: translateX(-50%);
   background: radial-gradient(
@@ -23,6 +24,7 @@
 }
 
 .colorBackgroundBottom {
+  position: absolute;
   left: 50%;
   transform: translateX(-50%) rotate(190deg);
   background: radial-gradient(
