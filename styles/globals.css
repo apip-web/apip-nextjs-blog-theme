@@ -39,8 +39,8 @@
     line-height: 1.6; /* Lebih lega untuk keterbacaan */
   }
 
-  .prose {
-    max-width: 100%;
+  pre {
+    overflow: auto;
   }
   
   p {
