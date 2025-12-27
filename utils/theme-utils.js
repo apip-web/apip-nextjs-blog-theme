@@ -10,9 +10,9 @@ export function generateCssVariables() {
   for (const [key, value] of Object.entries(themeColors)) {
     cssVars[`--theme-${key}`] = value;
   }
-  cssVars['--theme-headings'] = FONT_THEMES[FONT_HEADINGS] || 'sans-serif';
-  cssVars['--theme-body'] = FONT_THEMES[FONT_BODY] || 'sans-serif';
-
+  cssVars['--theme-headings'] = 'var(--font-geist)';
+  cssVars['--theme-body'] = 'var(--font-geist)';
+  
   const cssVarsString = Object.entries(cssVars)
     .map(([key, value]) => `${key}: ${value};`)
     .join('\n');
