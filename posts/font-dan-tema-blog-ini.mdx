@@ -8,13 +8,18 @@ description: >-
 date: '2025-12-27'
 ---
 
-#### 1) File themes.js
-
-... 
-
-#### 2) File styles/globals.css
+#### File themes.js
+CSS diubah menjadi:
 
 ```
+exports.FONT_THEMES = {
+  Geist: `'Geist', Courier, sans-serif`,
+};
+```
+
+#### File styles/globals.css
+
+```css
 @layer base {
   h1,
   h2,
@@ -46,4 +51,29 @@ date: '2025-12-27'
     margin-bottom: 1rem; /* Spacing antar paragraf */
   }
 }
+```
+
+#### File utils/theme-utils.js
+
+Ubah menjadi:
+
+```js
+  cssVars['--theme-headings'] = 'Geist' || 'Courier';
+  cssVars['--theme-body'] = 'Geist' || 'Courier';
+```
+
+#### File pages/_app.js
+
+Import font menggunakan fitur yang ada di Next.js
+
+```js
+import { Geist } from 'next/font/google';
+
+// Definisi Geist
+const geist = Geist({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-geist',
+  display: 'swap',
+});
 ```
