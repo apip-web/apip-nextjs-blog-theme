@@ -50,10 +50,15 @@ export default function Layout({ children }) {
   }, []);
 
   return (
-    <div className="relative pb-24 overflow-hidden">
-      <div className="flex flex-col items-center w-full max-w-2xl mx-auto">
-        {children}
-      </div>
-    </div>
+<div className="relative pb-24 overflow-hidden">
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <GradientBackground variant="large" />
+    <GradientBackground variant="small" />
+  </div>
+
+  <div className="relative flex flex-col items-center w-full max-w-2xl mx-auto">
+    {children}
+  </div>
+</div>
   );
 }
