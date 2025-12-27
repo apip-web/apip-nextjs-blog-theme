@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@plugin '@tailwindcss/typography';
+
 
 @theme static {
   --color-primary: var(--theme-primary);
@@ -37,11 +37,6 @@
     font-family: var(--font-secondary);
     font-size: 1.125rem; /* ~18px, lebih besar dari default 16px */
     line-height: 1.6; /* Lebih lega untuk keterbacaan */
-  }
-
-  html, body {
-  overflow-x: hidden;
-  max-width: 100%;
   }
 
   p {
