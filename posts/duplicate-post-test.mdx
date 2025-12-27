@@ -1,107 +1,101 @@
 ---
 type: Post
-title: Next.js Blog Theme Style Guide
+title: Font dan Tema Blog ini
 description: >-
-  A style guide for a website is a set of design standards that define the look,
-  feel, and behavior of a digital product, ensuring consistency and cohesion
-  across all pages and elements.
+pengalaman mengubah font dan tema warna pada template blog Next.js
 date: '2025-12-27'
 ---
-A style guide for a website is a set of design standards that define the look, feel, and behavior of a digital product, ensuring consistency and cohesion across all pages and elements. It typically includes guidelines for colors, typography, spacing, buttons, icons, and imagery, as well as instructions on voice and tone for content.
 
-# h1 Heading
+# Mengubah Font dan Tema pada Blog Next.js Theme Ini
 
-## h2 Heading
+Halo! Kali ini saya mau berbagi pengalaman mengubah font dan tema warna pada template blog Next.js ini (https://github.com/apip-web/apip-nextjs-blog-theme).
 
-### h3 Heading
+Secara default, blog ini menggunakan **font sistem (sans-serif)** dan tema warna **default** (biru ungu). Tapi ternyata kita bisa mengubahnya dengan mudah, bahkan pakai font premium seperti **Geist** yang sama persis dengan yang dipakai di blog SvelteKit saya (https://apip-web.vercel.app).
 
-#### h4 Heading
+### 1. File-file Penting yang Mengatur Font & Tema
 
-##### h5 Heading
+Ada beberapa file kunci yang mengatur tampilan font dan warna:
 
-###### h6 Heading
+- **`themes.js`**  
+  Tempat definisi semua tema warna (`COLOR_THEMES`) dan font yang didukung (`FONT_THEMES`).
 
-## Horizontal Rules
+- **`utils/theme-utils.js`**  
+  File yang menghasilkan variabel CSS `--theme-*` berdasarkan konfigurasi di `themes.js` dan environment variables.
 
-***
+- **`styles/globals.css`**  
+  File yang menerapkan variabel CSS tersebut ke elemen HTML (heading dan body).
 
-## Emphasis
+### 2. Mengubah Font Menjadi Geist
 
-**This is bold text**
+Saya ingin fontnya sama persis dengan blog SvelteKit: **Geist** dari Google Fonts.
 
-**This is bold text**
+Langkah-langkahnya:
 
-*This is italic text*
-
-*This is italic text*
-
-~~Strikethrough~~
-
-## Blockquotes
-
-> Blockquotes can also be nested...
->
-> > ...by using additional greater-than signs right next to each other...
-> >
-> > > ...or with spaces between arrows.
-
-## Lists
-
-Unordered
-
-*   Lorem ipsum dolor sit amet
-*   Consectetur adipiscing elit
-*   Integer molestie lorem at massa
-
-Ordered
-
-1.  Lorem ipsum dolor sit amet
-2.  Consectetur adipiscing elit
-3.  Integer molestie lorem at massa
-
-## Code
-
-Inline `code`
-
-Block code
-
-```
-npm install netlify-cli -g
-```
-
-Syntax highlighting [edit]
-
+#### a. Tambahkan Geist ke `themes.js`
 ```js
-var foo = function (bar) {
-  return bar++;
+exports.FONT_THEMES = {
+  // ... tema lain
+  Geist: `'Geist', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`,
 };
-
-console.log(foo(5));
 ```
 
-## Tables
+#### b. Impor Geist di `pages/_app.js`
+```jsx
+function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      />
+      <span className="theme-bejamas" />
+      <Component {...pageProps} />
+    </>
+  );
+}
+```
 
-| Option | Description                                                               |
-| ------ | ------------------------------------------------------------------------- |
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default.    |
-| ext    | extension to be used for dest files.                                      |
+#### c. Hard-code Geist di `utils/theme-utils.js`
+```js
+cssVars['--theme-headings'] = `'Geist', Courier, sans-serif`;
+cssVars['--theme-body'] = `'Geist', Courier, sans-serif`;
+```
 
-Right aligned columns
+> Tips: Saya sengaja pakai `Courier` sebagai fallback karena tampilannya mencolok banget. Kalau font Geist gagal dimuat, langsung kelihatan (untuk debugging).
 
-| Option |                                                               Description |
-| -----: | ------------------------------------------------------------------------: |
-|   data | path to data files to supply the data that will be passed into templates. |
-| engine |    engine to be used for processing templates. Handlebars is the default. |
-|    ext |                                      extension to be used for dest files. |
+Setelah ini, font seluruh blog jadi Geist — heading tebal, body clean, persis seperti blog SvelteKit.
 
-## Links
+### 3. Mengubah Tema Warna
 
-*   [Next.js on Netlify](https://docs.netlify.com/frameworks/next-js/overview/)
-*   [Use Visual Editor with Next.js](https://docs.netlify.com/visual-editor/frameworks/next/)
+Tema warna diatur lewat `BLOG_THEME` atau hard-code di `utils/theme-utils.js`.
 
-## Image
+Contoh tema yang tersedia:
+- `default` → biru ungu
+- `bejamas` → merah orange
+- `netlify` → hijau cyan
+- `reddie` → merah pink kuning (yang saya pakai sekarang 🔥)
+- `greenie` → kuning hijau
 
-Recommended image orientation is horizontal. You can adjust the image component to your needs in `components/CustomImage.js`.
+Cara ganti:
+- Tambah di `.env.local`:
+  ```
+  BLOG_THEME=reddie
+  ```
+- Atau hard-code di `utils/theme-utils.js`:
+  ```js
+  const themeColors = COLOR_THEMES['reddie'].colors;
+  ```
 
-![Image alt text](/images/random-image.jpeg "Image Title")
+### Kesimpulan
+
+Template ini sangat fleksibel! Dengan beberapa modifikasi kecil di file-file kunci, kita bisa:
+- Ganti font ke apapun (Geist, Inter, Poppins, dll.)
+- Ganti tema warna sesuai mood
+- Tetap performa ringan karena pakai Tailwind + Next.js
+
+Kalau kamu mau coba-coba, langsung clone repo ini dan eksperimen. Hasilnya langsung kelihatan!
+
+Link repo: https://github.com/apip-web/apip-nextjs-blog-theme  
+Demo: https://apip-theme.vercel.app
+
+Apa tema atau font favoritmu? Share di komentar ya!
