@@ -61,7 +61,7 @@ export default function PostPage({
         </header>
         <main>
           <article
-            className="prose mx-auto max-w-[40rem] dark:prose-invert"
+            className="prose dark:prose-invert overflow-x-auto"
             data-sb-field-path="markdown_content"
           >
             <MDXRemote {...source} components={components} />
