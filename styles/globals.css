@@ -39,6 +39,10 @@
     line-height: 1.6; /* Lebih lega untuk keterbacaan */
   }
 
+  .prose {
+    max-width: 100%;
+  }
+  
   p {
     font-family: var(--font-secondary);
     margin-bottom: 1rem; /* Spacing antar paragraf */
