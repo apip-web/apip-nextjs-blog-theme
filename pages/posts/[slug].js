@@ -40,6 +40,7 @@ export default function PostPage({
 }) {
   return (
     <Layout>
+    <div className="mx-auto w-full max-w-2xl px-6">
       <SEO
         title={`${frontMatter.title} - ${globalData.name}`}
         description={frontMatter.description}
@@ -109,6 +110,7 @@ export default function PostPage({
         variant="small"
         className="absolute bottom-0 opacity-20 dark:opacity-10"
       />
+    </div>
     </Layout>
   );
 }
