@@ -14,7 +14,7 @@ import CustomImage from '../../components/CustomImage';
 import CustomLink from '../../components/CustomLink';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import Layout from '../../components/Layout';
+import Layout, { GradientBackground } from '../../components/Layout';
 import SEO from '../../components/SEO';
 
 // Custom components/renderers to pass to MDX.
