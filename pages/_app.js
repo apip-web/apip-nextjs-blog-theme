@@ -5,9 +5,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <span className="theme-bejamas" />
-      <main className={`${geist.variable} font-sans`}>
-        <Component {...pageProps} />
-      </main>
+      <Component {...pageProps} />
     </>
   );
 }
