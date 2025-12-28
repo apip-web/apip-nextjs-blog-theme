@@ -25,7 +25,7 @@ export default function Header() {
       <p className="header-author text-center dark:text-white">  
         <Link href="/">  
           {firstName}{' '}  
-          <span className="text-red-500">{lastName}</span>  
+          <span className="text-red-500 font-bold italic">{lastName}</span>
         </Link>  
       </p>  
     </header>  
