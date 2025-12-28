@@ -11,7 +11,7 @@ export default function Header({ name, authorImg }) {
         <div className="absolute inset-0 rounded-full bg-conic-180 from-gradient-3 from-0% to-gradient-4 to-100% blur-[8px]" />
         {authorImg && (
           <Image
-            src={authorImg}
+            src={authorAvatar}
             alt={name}
             width={80}
             height={80}
