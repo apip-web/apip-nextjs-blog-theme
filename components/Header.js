@@ -6,7 +6,7 @@ export default function Header({ name }) {
       <div className="block w-12 h-12 mx-auto mb-4 rounded-full bg-conic-180 from-gradient-3 from-0% to-gradient-4 to-100%" />
       <p className="header-author text-2xl text-center dark:text-white">
         <Link href="/">{name}</Link>
-      <div className="red">Web</div>
+      <span className="text-red-500">Web</span>
       </p>
     </header>
   );
