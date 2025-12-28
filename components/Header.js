@@ -24,7 +24,7 @@ export default function Header() {
       {/* Nama author */}
 <p className="header-author text-center">
   <Link href="/">
-    <span className="text-white font-extrabold uppercase">
+    <span className="text-white font-extrabold uppercase drop-shadow-sm">
       {firstName}
     </span>{' '}
     <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 font-extrabold uppercase drop-shadow-sm">
