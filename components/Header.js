@@ -7,7 +7,7 @@ export default function Header() {
   const [firstName, lastName] = name.split(' ');
 
   return (
-    <header className="pt-20 pb-12 flex flex-col items-center">
+    <header className="not-prose pt-20 pb-12 flex flex-col items-center">
       <div className="relative w-20 h-20 mb-4">
         <div className="absolute inset-0 rounded-full bg-conic-180 from-gradient-3 from-0% to-gradient-4 to-100% blur-[8px]" />
         <Image
