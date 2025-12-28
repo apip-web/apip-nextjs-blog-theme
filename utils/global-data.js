@@ -8,10 +8,14 @@ export const getGlobalData = () => {
   const footerText = process.env.BLOG_FOOTER_TEXT
     ? decodeURI(process.env.BLOG_FOOTER_TEXT)
     : 'All rights reserved.';
+  const authorAvatar = process.env.BLOG_AVATAR
+    ? decodeURI(process.env.BLOG_AVATAR)
+    : '/images/avatar.jpg';
 
   return {
     name,
     blogTitle,
     footerText,
+    authorAvatar,
   };
 };
