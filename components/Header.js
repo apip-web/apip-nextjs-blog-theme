@@ -18,7 +18,7 @@ export default function Header() {
           className="relative rounded-full border-4 border-white dark:border-black"
         />
       </div>
-      <p className="header-author text-2xl text-center dark:text-white font-semibold">
+      <p className="header-author text-center dark:text-white">
         <Link href="/">
           {firstName}{' '}
           <span className="text-red-500">{lastName}</span>
