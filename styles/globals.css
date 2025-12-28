@@ -19,6 +19,12 @@
     font-size: 1.125rem;
     line-height: 1.6;
   }
+
+  .header-author {
+  font-family: var(--font-primary);
+  font-weight: 800;
+  text-decoration: none;
+  }
 }
 
 @layer components {
