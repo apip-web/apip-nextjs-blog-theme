@@ -46,7 +46,7 @@ export default function PostPage({
         description={frontMatter.description}
       />
       <Header name={globalData.name} />
-      <article className="px-6 md:px-0" data-sb-object-id={`posts/${slug}.mdx`}>
+      <article className="prose px-6 md:px-0" data-sb-object-id={`posts/${slug}.mdx`}>
         <header>
           <h1
             className="mb-12 text-3xl text-center md:text-5xl dark:text-white"
