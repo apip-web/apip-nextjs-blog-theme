@@ -21,13 +21,15 @@ export default function Header() {
         />  
       </div>  
   
-      {/* Nama author */}  
-      <p className="header-author text-center dark:text-white">  
-        <Link href="/">  
-          {firstName}{' '}  
-          <span className="text-red-500 font-bold italic">{lastName}</span>
-        </Link>  
-      </p>  
-    </header>  
-  );  
+      {/* Nama author */}
+<p className="header-author text-center dark:text-white">
+  <Link href="/">
+    {firstName}{' '}
+    <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 font-extrabold uppercase drop-shadow-sm">
+      {lastName}
+    </span>
+  </Link>
+</p>
+    </header>
+  );
 }
