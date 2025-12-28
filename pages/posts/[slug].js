@@ -47,15 +47,15 @@ export default function PostPage({
       />
       <Header name={globalData.name} />
       <article className="px-6 md:px-0" data-sb-object-id={`posts/${slug}.mdx`}>
-        <header>
+        <header className="prose">
           <h1
-            className="prose mb-12 text-3xl text-center md:text-5xl dark:text-white"
+            className="mb-12 text-3xl text-center md:text-5xl dark:text-white"
             data-sb-field-path="title"
           >
             {frontMatter.title}
           </h1>
           {frontMatter.description && (
-            <p className="prose mb-4 text-xl" data-sb-field-path="description">
+            <p className="mb-4 text-xl" data-sb-field-path="description">
               {frontMatter.description}
             </p>
           )}
