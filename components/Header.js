@@ -16,7 +16,6 @@ export default function Header() {
           width={80}
           height={80}
           className="relative rounded-full border-4 border-white dark:border-black"
-          unoptimized
         />
       </div>
       <p className="header-author text-2xl text-center dark:text-white font-semibold">
